@@ -1,0 +1,29 @@
+.modal-alert {
+    transform: translateX(200%);
+    z-index: 12;
+    border-radius: 20px;
+    padding: 25px 25px;
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    transition: 0.3s all;
+    display: flex;
+    background-color: black;
+    align-items: center;
+  }
+  
+  .active {
+    transform: translateX(0);
+  }
+  .gonne {
+    transform: translateX(500px);
+  }
+  .close-modal  {
+    border: 0;
+    background-color: #5891ff;
+    padding: 5px 15px;
+    border-radius: 20px;
+  }
+  .close-modal {
+    margin-right: 20px;
+  }
