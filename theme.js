@@ -17,16 +17,16 @@ btnTheme.addEventListener('click', switchTheme);
 
 function setDarkTheme() {
     body.classList.add('themeColor')
-    switchtheme.src = '/img/sunny_2952896.png'
-    login.src = '/img/login-3.png'
+    switchtheme.src = 'img/sunny_2952896.png'
+    login.src = 'img/login-3.png'
     document.querySelector('.left-slide').style.backgroundColor = '#151515';
     document.querySelector('.text-slide').classList.add('dark')
 }
 
 function setLightTheme() {
     document.querySelector('.text-alert').style.color = 'white'
-    switchtheme.src = '/img/moon_1812660.png'
-    login.src = '/img/login.png'
+    switchtheme.src = 'img/moon_1812660.png'
+    login.src = 'img/login.png'
     body.classList.remove('themeColor');
     document.querySelector('.left-slide').style.backgroundColor = 'white';
     document.querySelector('.text-slide').style.color = '#5891ff';
