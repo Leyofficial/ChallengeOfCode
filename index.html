@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="form.css">
     <link rel="stylesheet" href="notify.css">
     <link rel="stylesheet" href="burger.css">
+    <link rel="stylesheet" href="chart.css">
 </head>
 
 <body>
@@ -148,31 +149,63 @@
                 </label>
             </div>
         </header>
-        <div class="left-slide gone">
-
-            <button class="button-sign-out ">
-                <p class="login-name">
-
-                </p>
-                <img id="login" width="30px" class="sign-out" src="img/login.png" alt="">
+        <div class="input-main">
+        <h1>Enter your <span>codding </span>time</h1>
+        <p class="warning">Makes <span>sure</span> you have entered your <span>code time</span>.<br>
+            You <span>won't</span> be able to <span>change</span> the <span>graph later</span>.
+        </p>
+        <div class="form">
+            <input class="input" placeholder="Type your hours" required="" min="0" type="number">
+            <span class="input-border">
+            </span>
+            <button class="button-confirm">
+                Send
             </button>
-            <div class="text-slide dark">
-                <a href="mile.html">
-                    <p class="link-main">Milestones</p>
-                </a>
-                <a href="#">
-                    <p>Contact us</p>
-                </a>
-                <a href="#">
-                    <p>Support</p>
-                </a>
-                <a href="#">
-                    <p>About us</p>
-                </a>
-            </div>
+            
+        </div>
+        
+    </div>
+    <div id="graph-btns">
+        <button id="graph-controller" class="before-weak">
+            Weak <span>before</span>
+        </button>
+        <button id="graph-controller" class="after-weak">
+            Weak <span>after</span>
+        </button>
+    </div>
+    <div class="graph">
+        <div id="graph-scale" class="main-graph">
+            <h2 id="graph-title" class="title-graph">Weak start</h2>
+            <canvas id="myChart" style="width:  100%;"></canvas>
         </div>
     </div>
+    <div class="left-slide gone">
+
+        <button class="button-sign-out ">
+            <p class="login-name">
+
+            </p>
+            <img id="login" width="30px" class="sign-out" src="img/login.png" alt="">
+        </button>
+        <div class="text-slide dark">
+            <a href="mile.html">
+                <p class="link-main">Milestones</p>
+            </a>
+            <a href="#">
+                <p>Contact us</p>
+            </a>
+            <a href="#">
+                <p>Support</p>
+            </a>
+            <a href="#">
+                <p>About us</p>
+            </a>
+        </div>
+    </div>
+    </div>
     <script src="notify.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="chart.js"></script>
     <script src="main.js"></script>
     <script src="theme.js"></script>
     <script src="registration.js"></script>

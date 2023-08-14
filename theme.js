@@ -20,7 +20,10 @@ function setDarkTheme() {
     switchtheme.src = 'img/sunny_2952896.png'
     login.src = 'img/login-3.png'
     document.querySelector('.left-slide').style.backgroundColor = '#151515';
-    document.querySelector('.text-slide').classList.add('dark')
+    document.querySelector('.text-slide').classList.add('dark');
+    document.querySelector('#graph-btns').classList.add('dark');
+    document.querySelector('.before-weak').classList.add('dark');
+    document.querySelector('.after-weak').classList.add('dark');
 }
 
 function setLightTheme() {
@@ -31,6 +34,8 @@ function setLightTheme() {
     document.querySelector('.left-slide').style.backgroundColor = 'white';
     document.querySelector('.text-slide').style.color = '#5891ff';
     document.querySelector('.text-slide').classList.remove('dark')
+    document.querySelector('.before-weak').classList.remove('dark');
+    document.querySelector('.after-weak').classList.remove('dark');
 }
 
 function switchTheme() {
