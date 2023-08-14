@@ -4,11 +4,9 @@ document.querySelector('.button-confirm').addEventListener('click', sendInfo)
 
 let counter = 0;
 
-window.onload = () => {
-    renderChart()
-}
 
-const data = [0, 0, 0, 0, 0, 0, 0];
+
+const data = [0 , 0 , 0, 0 ,0 ,0 ,0];
 
 const infoWeeks = {}
 
@@ -32,7 +30,6 @@ let dayonnum = n - 1; // n - 1 сегоднящний день
 
 const filterDay = days.filter((item) => {
     if (dayOfWeek === item) {
-
         console.log(dayonnum);
         data.splice(dayonnum, 1, 0.10)
         return item
@@ -47,10 +44,12 @@ function sendInfo() {
     const input = document.querySelector('.input');
     const inputValue = +input.value;
     data.splice(dayonnum, 1, inputValue)
+    if (infoWeeks[`weak${counter.length }`]> 7) return
     infoWeeks[`weak${counter}`] = data
     console.log(infoWeeks);
     saveToLC()
-    renderChart();
+    createNotify('Well done today!')
+    renderChart()
 }
 
 function saveToLC() {
@@ -65,7 +64,7 @@ function renderChart() {
 
     try {
         const ctx = document.getElementById('myChart');
-        if (myChart!== null){
+        if (myChart !== null) {
             myChart.destroy();
         }
         myChart = new Chart(ctx, {
@@ -107,7 +106,7 @@ function renderChart() {
     }
     catch (err) {
         console.log(err);
-        // createNotify('Come back tomorrow!')
     }
 
 }
+renderChart()

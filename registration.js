@@ -47,6 +47,7 @@ function showFirstForm() {
 }
 
 function hideForms() {
+    document.body.style.overflow = "unset";
     document.querySelector('.form-container').classList.add('hidden');
     document.querySelector('.overlay').classList.add('hidden');
 }

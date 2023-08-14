@@ -16,21 +16,24 @@ window.addEventListener('load', () => {
 btnTheme.addEventListener('click', switchTheme);
 
 function setDarkTheme() {
-    body.classList.add('themeColor')
-    switchtheme.src = 'img/sunny_2952896.png'
-    login.src = 'img/login-3.png'
+
+    body.classList.add('themeColor');
+    switchtheme.src = 'img/sunny_2952896.png';
+    login.src = 'img/login-3.png';
     document.querySelector('.left-slide').style.backgroundColor = '#151515';
     document.querySelector('.text-slide').classList.add('dark');
     document.querySelector('#graph-btns').classList.add('dark');
     document.querySelector('.before-weak').classList.add('dark');
     document.querySelector('.after-weak').classList.add('dark');
+    document.querySelector('.input').classList.add('dark');
 }
 
 function setLightTheme() {
-    document.querySelector('.text-alert').style.color = 'white'
-    switchtheme.src = 'img/moon_1812660.png'
-    login.src = 'img/login.png'
+    document.querySelector('.text-alert').style.color = 'white';
+    switchtheme.src = 'img/moon_1812660.png';
+    login.src = 'img/login.png';
     body.classList.remove('themeColor');
+    document.querySelector('.input').classList.remove('dark');
     document.querySelector('.left-slide').style.backgroundColor = 'white';
     document.querySelector('.text-slide').style.color = '#5891ff';
     document.querySelector('.text-slide').classList.remove('dark')

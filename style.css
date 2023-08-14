@@ -24,7 +24,8 @@
   color: white;
 }
 
-body, p {
+body,
+p {
   transition: 0.5s all;
   font-family: Georgia, "Times New Roman", Times, serif;
 }
@@ -43,7 +44,8 @@ span {
   margin-bottom: 50px;
 }
 
-.header, .button-sign-out {
+.header,
+.button-sign-out {
   justify-content: space-between;
   gap: 5px;
   display: flex;
@@ -62,7 +64,8 @@ span {
   padding: 5px;
 }
 
-.button-theme, .button-sign-out {
+.button-theme,
+.button-sign-out {
   border: 0px;
   background-color: transparent;
   cursor: pointer;
@@ -82,7 +85,8 @@ span {
 }
 
 .text-slide {
-  margin-top: 50%;
+  position: absolute;
+  top: 25%;
 }
 .text-slide p {
   color: #151515;
@@ -138,7 +142,6 @@ span {
 /* styling of Input */
 .input {
   border-radius: 5px 1px 1px 5px;
-  color: #fff;
   font-size: 0.9rem;
   background-color: transparent;
   width: 100%;
@@ -177,12 +180,12 @@ input:focus ~ .input-border {
 /* === if you want to do animated border on typing === */
 /* remove input:focus code and uncomment below code */
 /* input:valid ~ .input-border{
-  width: 100%;
-} */
+     width: 100%;
+   } */
 .button-confirm {
+  color: grey;
   cursor: pointer;
   border-radius: 1px 5px 5px 1px;
-  color: white;
   background-color: transparent;
   border: 1px grey dotted;
 }
@@ -198,7 +201,7 @@ input:focus ~ .input-border {
   display: flex;
   --width-of-input: 200px;
   --border-height: 1px;
-  --border-before-color: rgba(221, 221, 221, 0.39);
+  --border-before-color: grey;
   --border-after-color: #5891ff;
   --input-hovered-color: #4985e01f;
   position: relative;
