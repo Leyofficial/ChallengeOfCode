@@ -190,4 +190,17 @@ input:focus ~ .input-border {
 .warning {
   margin-top: 15px;
   font-size: 15px;
+}
+
+.form-submit {
+  margin-top: 20px;
+  width: 100%;
+  display: flex;
+  --width-of-input: 200px;
+  --border-height: 1px;
+  --border-before-color: rgba(221, 221, 221, 0.39);
+  --border-after-color: #5891ff;
+  --input-hovered-color: #4985e01f;
+  position: relative;
+  width: var(--width-of-input);
 }/*# sourceMappingURL=style.css.map */

@@ -56,13 +56,19 @@ function sendInfo() {
 function saveToLC() {
     localStorage.setItem('graph-data', JSON.stringify(infoWeeks))
 }
+
+let myChart = null
+
 function renderChart() {
     const response = JSON.parse(localStorage.getItem('graph-data'))
     const thisWeak = response[`weak${counter}`];
 
     try {
         const ctx = document.getElementById('myChart');
-        new Chart(ctx, {
+        if (myChart!== null){
+            myChart.destroy();
+        }
+        myChart = new Chart(ctx, {
 
             type: 'bar',
 
