@@ -1,9 +1,9 @@
 document.querySelector('.before-weak').addEventListener('click', before);
 document.querySelector('.after-weak').addEventListener('click', after);
 document.querySelector('.button-confirm').addEventListener('click', sendInfo);
-
-
 let counter = 0;
+
+
 
 let data = [0, 0, 0, 0, 0, 0, 0];
 
@@ -44,55 +44,52 @@ function before() {
     saveToLC()
 }
 function sendInfo() {
-    dayonnum += n + 0
     const input = document.querySelector('.input');
     const inputValue = +input.value;
-
     data.splice(dayonnum, 1, inputValue);
     // console.log(infoWeeks[`weak${counter}`].length);
     if (data.length > 7) {
-        dayonnum = n -1
-        console.log(dayonnum);
         const splicedlastvalue = +infoWeeks[`weak${counter}`].splice(7, 1)
         counter++
         data = [splicedlastvalue, 0, 0, 0, 0, 0, 0]
         document.querySelector('.title-graph').textContent = `Weak ${counter}`
         infoWeeks[`weak${counter}`] = [splicedlastvalue, 0, 0, 0, 0, 0, 0];
-        saveToLC()
-        renderChart()
+        saveToLC();
+        renderChart();
+        saveData()
         return
     } else {
         infoWeeks[`weak${counter}`] = data;
         saveToLC();
         renderChart();
+        saveData()
     }
     saveToLC();
     createNotify('Well done today!');
     renderChart();
+    saveData()
     // infoWeeks[`weak${counter}`]; --- last week 
 }
 
 function saveToLC() {
     localStorage.setItem('graph-data', JSON.stringify(infoWeeks))
 }
-function noteLastWeak() {
-    if (!localStorage.getItem('graph-data')) return
-    const response = JSON.parse(localStorage.getItem('graph-data'));
-    const lastWeakGraph = response[`weak${counter}`];
-    
-    JSON.stringify(localStorage.setItem('lastweak' , lastWeakGraph));
-    data =  JSON.parse(localStorage.getItem('lastweak'));
-    document.querySelector('.title-graph').textContent = `Weak ${counter}`
+function saveData() {
+    localStorage.setItem('data', JSON.stringify(data))
 }
-
-
 
 let myChart = null;
 
 function renderChart() {
-    const response = JSON.parse(localStorage.getItem('graph-data'))
-    const thisWeak = response[`weak${counter}`];
+    // const thisWeak = JSON.parse(localStorage.getItem('last-weak')) * 
+    const response = JSON.parse(localStorage.getItem('graph-data'));
+    const thisWeak = response[Object.keys(response)[Object.keys(response).length - 1]];
 
+    var lastKey;
+    for (var key in response) {
+        lastKey = key;
+    }
+    document.querySelector('.title-graph').textContent = lastKey.toUpperCase();
     try {
         const ctx = document.getElementById('myChart');
         if (myChart !== null) {

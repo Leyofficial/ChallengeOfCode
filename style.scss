@@ -187,3 +187,8 @@ input:focus ~ .input-border {
   position: relative;
   width: var(--width-of-input);
 }
+
+.input-title {
+  margin: 60px 0px ;
+  text-align: center;
+}
