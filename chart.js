@@ -1,13 +1,12 @@
 document.querySelector('.before-weak').addEventListener('click', before);
 document.querySelector('.after-weak').addEventListener('click', after);
 document.querySelector('.button-confirm').addEventListener('click', sendInfo);
-let counter = 0;
 
+let counter = JSON.parse(localStorage.getItem('counter'))|| 0;
 
+let data = JSON.parse(localStorage.getItem('data')) || [0, 0, 0, 0, 0, 0, 0];
 
-let data = [0, 0, 0, 0, 0, 0, 0];
-
-const infoWeeks = {}
+const infoWeeks = JSON.parse(localStorage.getItem('graph-data')) || {}
 
 const days = [
     'воскресенье',
@@ -27,7 +26,7 @@ const dayOfWeek = date.toLocaleString('ru', options);
 
 const d = new Date();
 const n = d.getDay();
-let dayonnum = n - 1; // n - 1 сегоднящний день 
+let dayonnum = JSON.parse(localStorage.getItem('day'))|| n - 1; // n - 1 сегоднящний день 
 const filterDay = days.filter((item) => {
     if (dayOfWeek === item) {
         console.log(dayonnum);
@@ -44,30 +43,38 @@ function before() {
     saveToLC()
 }
 function sendInfo() {
+    // dayonnum += n + 0
     const input = document.querySelector('.input');
     const inputValue = +input.value;
     data.splice(dayonnum, 1, inputValue);
-    // console.log(infoWeeks[`weak${counter}`].length);
     if (data.length > 7) {
-        const splicedlastvalue = +infoWeeks[`weak${counter}`].splice(7, 1)
+        // dayonnum = n - 1
+        console.log(counter);
+        // const splicedlastvalue = +infoWeeks[`weak${counter}`].splice(7, 1);
+        const splicedlastvalue = +data.splice(7 , 1)
         counter++
+        console.log(splicedlastvalue);
         data = [splicedlastvalue, 0, 0, 0, 0, 0, 0]
         document.querySelector('.title-graph').textContent = `Weak ${counter}`
         infoWeeks[`weak${counter}`] = [splicedlastvalue, 0, 0, 0, 0, 0, 0];
         saveToLC();
+        saveCurrentDay()
         renderChart();
         saveData()
-        return
+        saveCounter()
     } else {
         infoWeeks[`weak${counter}`] = data;
         saveToLC();
         renderChart();
         saveData()
+        saveCounter()
     }
     saveToLC();
     createNotify('Well done today!');
     renderChart();
-    saveData()
+    saveData();
+    saveCounter();
+    saveCurrentDay()
     // infoWeeks[`weak${counter}`]; --- last week 
 }
 
@@ -77,7 +84,12 @@ function saveToLC() {
 function saveData() {
     localStorage.setItem('data', JSON.stringify(data))
 }
-
+function saveCounter() {
+    localStorage.setItem('counter', JSON.stringify(counter))
+}
+function saveCurrentDay(){
+    localStorage.setItem('day' , JSON.stringify(dayonnum))
+}
 let myChart = null;
 
 function renderChart() {
