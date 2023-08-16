@@ -1,0 +1,32 @@
+.milestones-container {
+    gap: 50px 20px  ;
+    text-align: center;
+    display: grid;
+    grid-template-columns: repeat(3 , 1fr);
+}
+.milestones-item {
+    transition: .5s all;
+}
+.table {
+    width: 90%;
+    margin: 0 auto;
+    padding: 40px ;
+    margin-top: 100px;
+    align-items :center;
+    border: 1px rgb(87, 143, 255) solid;;
+    border-radius: 5px;
+}
+.table-items {
+    justify-content: space-around;
+    display: flex;
+}
+.table-item {
+    width: 100%;
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom : 1px grey dotted;
+}
+.milestones-item:hover {
+    transform: scale(1.2);
+    margin-bottom: 37px;
+}

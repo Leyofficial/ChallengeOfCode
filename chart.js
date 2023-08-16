@@ -27,13 +27,13 @@ const dayOfWeek = date.toLocaleString('ru', options);
 const d = new Date();
 const n = d.getDay();
 let dayonnum = JSON.parse(localStorage.getItem('day')) || n - 1; // n - 1 сегоднящний день 
-const filterDay = days.filter((item) => {
-    if (dayOfWeek === item) {
-        console.log(dayonnum);
-        data.splice(dayonnum, 1, 0.10);
-        return item
-    }
-})
+// const filterDay = days.filter((item) => {
+//     if (dayOfWeek === item) {
+//         console.log(dayonnum);
+//         data.splice(dayonnum, 1, 0.10);
+//         return item
+//     }
+// })
 
 function after() {
     const lastValue = JSON.parse(localStorage.getItem('counter')|| 0);
