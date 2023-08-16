@@ -2,7 +2,7 @@ document.querySelector('.before-weak').addEventListener('click', before);
 document.querySelector('.after-weak').addEventListener('click', after);
 document.querySelector('.button-confirm').addEventListener('click', sendInfo);
 
-let counter = JSON.parse(localStorage.getItem('counter'))|| 0;
+let counter = JSON.parse(localStorage.getItem('counter')) || 0;
 
 let data = JSON.parse(localStorage.getItem('data')) || [0, 0, 0, 0, 0, 0, 0];
 
@@ -26,7 +26,7 @@ const dayOfWeek = date.toLocaleString('ru', options);
 
 const d = new Date();
 const n = d.getDay();
-let dayonnum = JSON.parse(localStorage.getItem('day'))|| n - 1; // n - 1 сегоднящний день 
+let dayonnum = JSON.parse(localStorage.getItem('day')) || n - 1; // n - 1 сегоднящний день 
 const filterDay = days.filter((item) => {
     if (dayOfWeek === item) {
         console.log(dayonnum);
@@ -36,22 +36,118 @@ const filterDay = days.filter((item) => {
 })
 
 function after() {
+    const lastValue = JSON.parse(localStorage.getItem('counter')|| 0);
+    if (counter == lastValue || localStorage.getItem('counter') === 'null'){
+        createNotify('Вы не можете посмотреть следующую неделю не заполнив текущую')
+        return
+    }
+    let last = infoWeeks[`weak${counter += 1}`];
+    document.querySelector('.title-graph').textContent = `Weak ${counter}`
+    const ctx = document.getElementById('myChart');
+    if (myChart !== null) {
+        myChart.destroy();
+    }
+    myChart = new Chart(ctx, {
 
+        type: 'bar',
+
+        data: {
+            labels: ['Monday', 'Thuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+            datasets: [{
+                label: 'Hours',
+
+                data: [...last, 10],
+                borderWidth: 1,
+                backgroundColor: [
+                    'rgb(87, 143, 255)',
+                ],
+                barPercentage: [
+                    0.85
+                ],
+                categoryPercentage: [
+                    1
+                ]
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+
+                },
+            },
+            layout: {
+                margin: {
+                    top: 250
+                },
+            }
+        }
+    });
 }
 
 function before() {
-    saveToLC()
+    if (counter === 0){
+        return
+    }
+    let last = infoWeeks[`weak${counter -= 1}`];
+    document.querySelector('.title-graph').textContent = `Weak ${counter}`
+    const ctx = document.getElementById('myChart');
+    if (myChart !== null) {
+        myChart.destroy();
+    }
+    myChart = new Chart(ctx, {
+
+        type: 'bar',
+
+        data: {
+            labels: ['Monday', 'Thuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+            datasets: [{
+                label: 'Hours',
+
+                data: [...last, 10],
+                borderWidth: 1,
+                backgroundColor: [
+                    'rgb(87, 143, 255)',
+                ],
+                barPercentage: [
+                    0.85
+                ],
+                categoryPercentage: [
+                    1
+                ]
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+
+                },
+            },
+            layout: {
+                margin: {
+                    top: 250
+                },
+            }
+        }
+    });
 }
+
+
 function sendInfo() {
-    // dayonnum += n + 0
+    dayonnum += n + 0
     const input = document.querySelector('.input');
     const inputValue = +input.value;
+    if (inputValue > 24) {
+        createNotify('Вы не можете работать больше чем 24 ч в сутки)')
+        return
+    }
     data.splice(dayonnum, 1, inputValue);
     if (data.length > 7) {
-        // dayonnum = n - 1
+        dayonnum = n - 1
         console.log(counter);
         // const splicedlastvalue = +infoWeeks[`weak${counter}`].splice(7, 1);
-        const splicedlastvalue = +data.splice(7 , 1)
+        const splicedlastvalue = +data.splice(7, 1)
         counter++
         console.log(splicedlastvalue);
         data = [splicedlastvalue, 0, 0, 0, 0, 0, 0]
@@ -87,8 +183,8 @@ function saveData() {
 function saveCounter() {
     localStorage.setItem('counter', JSON.stringify(counter))
 }
-function saveCurrentDay(){
-    localStorage.setItem('day' , JSON.stringify(dayonnum))
+function saveCurrentDay() {
+    localStorage.setItem('day', JSON.stringify(dayonnum))
 }
 let myChart = null;
 
@@ -97,7 +193,7 @@ function renderChart() {
     const response = JSON.parse(localStorage.getItem('graph-data'));
     const thisWeak = response[Object.keys(response)[Object.keys(response).length - 1]];
 
-    var lastKey;
+    let lastKey;
     for (var key in response) {
         lastKey = key;
     }
