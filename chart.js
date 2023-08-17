@@ -38,7 +38,6 @@ let dayonnum = JSON.parse(localStorage.getItem('day')) || n - 1; // n - 1 сег
 function after() {
     const lastValue = JSON.parse(localStorage.getItem('counter')|| 0);
     if (counter == lastValue || localStorage.getItem('counter') === 'null'){
-        createNotify('Вы не можете посмотреть следующую неделю не заполнив текущую')
         return
     }
     let last = infoWeeks[`weak${counter += 1}`];
@@ -135,7 +134,7 @@ function before() {
 
 
 function sendInfo() {
-    dayonnum += n + 0
+    // dayonnum += n - 2
     const input = document.querySelector('.input');
     const inputValue = +input.value;
     if (inputValue > 24) {
@@ -144,7 +143,7 @@ function sendInfo() {
     }
     data.splice(dayonnum, 1, inputValue);
     if (data.length > 7) {
-        dayonnum = n - 1
+        // dayonnum = n - 1 
         console.log(counter);
         // const splicedlastvalue = +infoWeeks[`weak${counter}`].splice(7, 1);
         const splicedlastvalue = +data.splice(7, 1)

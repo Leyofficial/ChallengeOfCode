@@ -15,6 +15,7 @@
     align-items :center;
     border: 1px rgb(87, 143, 255) solid;;
     border-radius: 5px;
+    margin-bottom: 50px;
 }
 .table-items {
     justify-content: space-around;
@@ -30,3 +31,13 @@
     transform: scale(1.2);
     margin-bottom: 37px;
 }
+
+@media (max-width : 480px) {
+    .logo__title {
+        font-size: 25px;
+    }
+    .milestones-container {
+      gap: 50px;
+      grid-template-columns: repeat(2 , 1fr);
+    }
+  }
