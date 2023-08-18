@@ -26,7 +26,7 @@ const dayOfWeek = date.toLocaleString('ru', options);
 
 const d = new Date();
 const n = d.getDay();
-let dayonnum = JSON.parse(localStorage.getItem('day')) || n - 1; // n - 1 сегоднящний день 
+let dayonnum = n - 1; // n - 1 сегоднящний день 
 // const filterDay = days.filter((item) => {
 //     if (dayOfWeek === item) {
 //         console.log(dayonnum);
